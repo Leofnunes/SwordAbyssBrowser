@@ -1985,8 +1985,10 @@ if($.autoReload) {
 
 function setupAutoReload() {
 	UltraHUDManager.checkHUDDataString(true);
-	const win = nw.Window.get();
-	win.on("focus", UltraHUDManager.checkHUDDataString.bind(UltraHUDManager));
+	if(Utils.isNwjs()) {
+		const win = nw.Window.get();
+		win.on("focus", UltraHUDManager.checkHUDDataString.bind(UltraHUDManager));
+	}
 }
 
 setupAutoReload();
@@ -2039,5 +2041,3 @@ MergeClass(Scene_Map);
 MergeClass(Scene_Battle);
 
 })(SRD.HUDMakerUltra);
-
-
